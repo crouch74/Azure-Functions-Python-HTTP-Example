@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 
 
 import json
 from AzureHTTPHelper import HTTPHelper
-from vaderSentiment import SentimentIntensityAnalyzer
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # This is a little class used to abstract away some basic HTTP functionality
 http = HTTPHelper()
