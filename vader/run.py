@@ -14,12 +14,18 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # This is a little class used to abstract away some basic HTTP functionality
 http = HTTPHelper()
+body = ""
+if 'text' in http.get:
+    text = http.get['text']
+    analyzer = SentimentIntensityAnalyzer()
+    vs = analyzer.polarity_scores(text)
+    body = str(vs)
+else:
+    body = "You need to add text param like this >>\nhttps://vaderpoc.azurewebsites.net/api/vader?text=this+is+a+sample+text"
 
-text = http.get['text']
 
 
-analyzer = SentimentIntensityAnalyzer()
-vs = analyzer.polarity_scores(text)
+
 
 # All data to be returned to the client gets put into this dict
 returnData = {
@@ -27,7 +33,7 @@ returnData = {
     "status": 200,
     
     #Response Body:
-    "body": str(vs),
+    "body": body,
     
     # Send any number of HTTP headers
     "headers": {
