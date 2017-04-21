@@ -4,7 +4,7 @@
     Created by Anthony Eden
     http://MediaRealm.com.au/
 """
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from vaderSentiment import SentimentIntensityAnalyzer
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
 
