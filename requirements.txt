@@ -1,0 +1,2 @@
+--find-links wheelhouse
+vaderSentiment=2.5
