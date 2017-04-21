@@ -4,7 +4,7 @@
     Created by Anthony Eden
     http://MediaRealm.com.au/
 """
-
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
 
@@ -14,24 +14,11 @@ from AzureHTTPHelper import HTTPHelper
 # This is a little class used to abstract away some basic HTTP functionality
 http = HTTPHelper()
 
-# All these print statements get sent to the Azure Functions live log
-print "--- GET ---"
-print http.get
-print
+text = http.get['text']
 
-print "--- POST ---"
-print http.post
-print
 
-print "--- HEADERS ---"
-print http.headers
-print
-
-print "--- OTHER ENVIRONMENTAL VARIABLES ---"
-for x in http.env:
-    print x
-print
-
+analyzer = SentimentIntensityAnalyzer()
+vs = analyzer.polarity_scores(text)
 
 # All data to be returned to the client gets put into this dict
 returnData = {
@@ -39,12 +26,11 @@ returnData = {
     "status": 200,
     
     #Response Body:
-    "body": "<h1>Azure Works :)</h1>",
+    "body": str(vs),
     
     # Send any number of HTTP headers
     "headers": {
-        "Content-Type": "text/html",
-        "X-Awesome-Header": "YesItIs"
+        "Content-Type": "text/plain"
     }
 }
 
