@@ -4,12 +4,13 @@
     Created by Anthony Eden
     http://MediaRealm.com.au/
 """
-from vaderSentiment import SentimentIntensityAnalyzer
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lib')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'env/Lib/site-packages')))
 
 import json
 from AzureHTTPHelper import HTTPHelper
+from vaderSentiment import SentimentIntensityAnalyzer
 
 # This is a little class used to abstract away some basic HTTP functionality
 http = HTTPHelper()
